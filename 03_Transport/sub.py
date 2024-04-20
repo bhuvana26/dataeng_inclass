@@ -7,7 +7,7 @@ project_id = "dataeng-project-420102"
 subscription_id = "my-sub"
 
 subscriber = pubsub_v1.SubscriberClient()
-sub_path = subscriber.sub_path(project_id, subscription_id)
+subscription_path = subscriber.subscription_path(project_id, subscription_id)
 
 if not os.path.exists("data"):
     os.makedirs("data")
@@ -18,6 +18,7 @@ def callback(message):
         data = base64.b64decode(message.data)
         data_json = json.loads(data)
         
+       
         file_path = os.path.join("data", f"{vehicle_id}.json")
         with open(file_path, "w") as json_file:
             json.dump(data_json, json_file, indent=4)
@@ -27,8 +28,8 @@ def callback(message):
     except Exception as e:
         print(f"Error processing message: {e}")
 
-subscriber.subscribe(sub_path, callback=callback)
-print(f"Listening for messages on {sub_path}..")
+subscriber.subscribe(subscription_path, callback=callback)
+print(f"Listening for messages on {subscription_path}..")
 
 print("Press Ctrl+C to exit")
 try:
