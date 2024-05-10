@@ -187,8 +187,6 @@ def main():
 
 	if CreateDB:
             createTable(conn)
-        #if createTable:
-            addConstraints(conn)
 
 	load(conn, cmdlist)
 
