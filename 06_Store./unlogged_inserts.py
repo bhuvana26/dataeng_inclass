@@ -242,3 +242,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# load_inserts.py
+# Displaying load_inserts.py.
